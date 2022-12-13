@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+}
+
+.film-container {
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    border: 1px double;
+}
+
+.film-container > h2 {
+    margin-bottom: 0.5rem;
+}
+.film-container > div {
+    padding-bottom: 0.5rem;
+}
+
+.poster {
+    width: 180px;
+    margin: auto;
+}
+
+.poster > img {
+    width: 100%;
+}

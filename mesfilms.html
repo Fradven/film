@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.post("db.json", function (data) {
+                data.map(film => {
+                    $("#film").append(`
+                    <div class="film-container">
+                        <h2>${film.titre} (${film.sortie})</h2>
+                        <div>${film.type}</div>
+                        <div class="poster"><img src=${film.poster} alt="${film.titre}"></div>
+                        <div class="character-container${film.id}"></div>
+                        <button class="casting${film.id}" value="view">View Casting</button>
+                    </div>
+                    `)
+                    $(".casting" + film.id).on("click", function () {
+                        if ($(this).val() === "view"){
+                            film.acteur.map(actor => {
+                                $(".character-container" + film.id).append(`
+                                <div class="character${film.id}">${actor.actor} as ${actor.character}</div>
+                                `)
+                            })
+                            $(".casting"+film.id).html("Close")
+                            $(this).val("close")
+                        }
+                        else {
+                            $(".character"+film.id).remove()
+                            $(".casting"+film.id).html("View Casting")
+                            $(this).val("view")
+                        }
+                    })
+                })
+            })
+        })
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Film</title>
+</head>
+
+<body>
+    <h1>Here are some Films</h1>
+    <div id="film"></div>
+</body>
+
+</html>
