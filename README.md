@@ -274,7 +274,7 @@ The button is now ready to show the character list when we click on it and hide 
 
 For that we simple append the character in our first if statement and in the else statement we select the div and add the method **.remove()**
 
-The whole script is now finished and you look something like this:
+The whole script is now finished and should look something like this:
 
     $(document).ready(function () {
             $.post("./db.json", function (data) {
