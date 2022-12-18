@@ -84,13 +84,13 @@ A good thing to already include in your script is the **.ready()** method that w
 
 ### The fetching:
 
-To start fetching from our json (or any DB you may have created) we will use jquery's **$.post()** method as show below.
+To start fetching from our json (or any DB you may have created) we will use either jquery's **$.post()** or **.get()**  method as show below.
 
-    $.post("db.json", function (data) {
+    $.get("db.json", function (data) {
         // Here will go our main function
     })
 
-As show above, the method **$.post()** will have two parameters:
+As show above, the method **$.get()** will have two parameters:
 
 * the first parameter is **string** containing the **path to our DB**, in this case **"db.json"**
 * the second parameter is a **function** that will also contian a parameter here called **data**. This data parameter is actualy the data that we are now fetching from **db.json**.
