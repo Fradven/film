@@ -14,9 +14,9 @@ We will fill the json file with an id, the title of a movie, the genre, the year
 
     {
         "id": 1,
-        "titre": "Alien",
+        "title": "Alien",
         "type": "science-fiction/horror",
-        "sortie": "1979",
+        "release_year": "1979",
         "poster": "https://www.themoviedb.org/t/p/original/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg",
         "acteur": [
             {
@@ -163,9 +163,9 @@ Now that we can extract data from the data base, we have to put in on our webpag
     data.map(film => {
                     $("#film").append(`
                     <div class="film-container">
-                        <h2>${film.titre} (${film.sortie})</h2>
+                        <h2>${film.title} (${film.release_year})</h2>
                         <div>${film.type}</div>
-                        <div class="poster"><img src=${film.poster} alt="${film.titre}"></div>
+                        <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
                         <div class="character-container${film.id}"></div>
                         <button class="casting${film.id}" value="view">View Casting</button>
                     </div>
@@ -178,7 +178,7 @@ Here we are selecting the div we created at the beggining with the id **film** l
 
 As we know, the parameter **film** is an object. We can therefore get the element we want from it by writing **film** followed by a **dot** and then the **name of the element**
 
-    exemple: film.titre
+    exemple: film.title
 
 Inside those tags,  we are suing the template literal that alows us to call script element inside a string, in this case it will be the elemnt inside the object that we want to show on the page.
 
@@ -189,9 +189,9 @@ So we are doing a loop inside a loop.
     data.map(film => {
                     $("#film").append(`
                     <div class="film-container">
-                        <h2>${film.titre} (${film.sortie})</h2>
+                        <h2>${film.title} (${film.release_year})</h2>
                         <div>${film.type}</div>
-                        <div class="poster"><img src=${film.poster} alt="${film.titre}"></div>
+                        <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
                         <div class="character-container${film.id}"></div>
                     </div>
                     `)
@@ -209,3 +209,101 @@ The reason is that, in the first loop, we will create several time the same div 
 
 To prevent that, we added the the id of the object to the class name so that it can become unique and the second loop will only append it's information inside that one we want.
 
+## 5. View and Close button
+
+We now want to be able to show or hide the list of characters for each movies. For that we must create a button that will be execute on click and show or hide the content as well changing the button itself.
+
+For that we will use several jquery method and a if()...else statement:
+
+### Add button
+
+First of, we need to add the button. We will put it at the end of the first **.append()** of our loop since it's a button that needs to appear for each of our movies.
+
+Inside the button we will create a class that must include the a unique element of the object of the film for the same reason as we mentioned for appending the characters (it is recommended to use the id as it should always be unique) and we will create a value here we will call it view.
+
+Between de tags we will write View Characters.
+
+It should like something like this:
+
+    $("#film").append(`
+                    <div class="film-container">
+                        <h2>${film.title} (${film.release_year})</h2>
+                        <div>${film.type}</div>
+                        <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
+                        <div class="character-container${film.id}"></div>
+                        <button class="character${film.id}" value="view">View Charcters</button>
+                    </div>
+                    `)
+
+### Using .on() method
+
+Now, we must add an event listener that will ***listen*** to the button. For that we will use  the jquery **.on()** method and instruct it to wait for a click to activite.
+
+    $(".characters" + film.id).on("click", function(){
+        // add event here
+    })
+
+In this method, the first parameter will be that action that the method has to listen to and the second parameter will be the function that will be executed. 
+
+There are several thing we will have to do in this function for our exercise.
+
+### Changing the button with .val() and .html()
+
+We will first start by changing the value and the text between the tags of our button.
+
+For that we have the **.val()** method that will take the value of what comes before, here the value will be **$(this)** which will select the specific value of the button we clicked and not other.
+
+Now in a **if()...else** statement we will check the value of the button and depending on what it is we will change both it's value using **.val()** and it's content using **.html**
+
+    $(".character" + film.id).on("click", function () {
+                        if ($(this).val() === "view"){
+                            $(".character"+film.id).html("Close")
+                            $(this).val("close")
+                        }
+                        else {
+                            $(".character"+film.id).html("View Characters")
+                            $(this).val("view")
+                        }
+                    })
+
+To summaryse, what is but inside de parentesis of the **.val()** will replace the value of the element and what is inside the **.html()** method will replace what is inside the tags.
+
+### After .append() we .remove()
+
+The button is now ready to show the character list when we click on it and hide it when we click it again.
+
+For that we simple append the character in our first if statement and in the else statement we select the div and add the method **.remove()**
+
+The whole script is now finished and you look something like this:
+
+    $(document).ready(function () {
+            $.post("./db.json", function (data) {
+                data.map(film => {
+                    $("#film").append(`
+                    <div class="film-container">
+                        <h2>${film.title} (${film.release_year})</h2>
+                        <div>${film.type}</div>
+                        <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
+                        <div class="character-container${film.id}"></div>
+                        <button class="character${film.id}" value="view">View Charcters</button>
+                    </div>
+                    `)
+                    $(".character" + film.id).on("click", function () {
+                        if ($(this).val() === "view"){
+                            film.character.map(character => {
+                                $(".character-container" + film.id).append(`
+                                <div class="character${film.id}">${character.character} (${character.actor})</div>
+                                `)
+                            })
+                            $(".character"+film.id).html("Close")
+                            $(this).val("close")
+                        }
+                        else {
+                            $(".character"+film.id).remove()
+                            $(".character"+film.id).html("View Characters")
+                            $(this).val("view")
+                        }
+                    })
+                })
+            })
+        })

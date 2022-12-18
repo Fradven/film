@@ -1,11 +1,11 @@
 [
     {
         "id": 1,
-        "titre": "Alien",
+        "title": "Alien",
         "type": "science-fiction/horror",
-        "sortie": "1979",
+        "release_year": "1979",
         "poster": "https://www.themoviedb.org/t/p/original/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg",
-        "acteur": [
+        "character": [
             {
                 "character": "Ripley",
                 "actor": "Sigourney Weaver"
@@ -22,11 +22,11 @@
     },
     {
         "id": 2,
-        "titre": "Shining",
+        "title": "Shining",
         "type": "horror-thriller",
-        "sortie": "1980",
+        "release_year": "1980",
         "poster": "https://flxt.tmsimg.com/assets/p40_p_v8_ar.jpg",
-        "acteur": [
+        "character": [
             {
                 "character": "Jack Torrance",
                 "actor": "Jack Nicholson"
@@ -43,11 +43,11 @@
     },
     {
         "id": 3,
-        "titre": "Shawshank Redemption",
+        "title": "Shawshank Redemption",
         "type": "drame",
-        "sortie": "1994",
+        "release_year": "1994",
         "poster": "https://m.media-amazon.com/images/I/519NBNHX5BL._AC_.jpg",
-        "acteur": [
+        "character": [
             {
                 "character": "Andy Dufresne",
                 "actor": "Tim Robbins"
@@ -64,11 +64,11 @@
     },
     {
         "id": 4,
-        "titre": "Singin' in the Rain",
+        "title": "Singin' in the Rain",
         "type": "musical",
-        "sortie": "1952",
+        "release_year": "1952",
         "poster": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Singin%27_in_the_Rain_%281952_poster%29.jpg",
-        "acteur": [
+        "character": [
             {
                 "character": "Don Lockwood",
                 "actor": "Gene Kelly"

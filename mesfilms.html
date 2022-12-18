@@ -8,30 +8,30 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script>
         $(document).ready(function () {
-            $.post("db.json", function (data) {
+            $.post("./db.json", function (data) {
                 data.map(film => {
                     $("#film").append(`
                     <div class="film-container">
-                        <h2>${film.titre} (${film.sortie})</h2>
+                        <h2>${film.title} (${film.release_year})</h2>
                         <div>${film.type}</div>
-                        <div class="poster"><img src=${film.poster} alt="${film.titre}"></div>
+                        <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
                         <div class="character-container${film.id}"></div>
-                        <button class="casting${film.id}" value="view">View Casting</button>
+                        <button class="character${film.id}" value="view">View Charcters</button>
                     </div>
                     `)
-                    $(".casting" + film.id).on("click", function () {
+                    $(".character" + film.id).on("click", function () {
                         if ($(this).val() === "view"){
-                            film.acteur.map(actor => {
+                            film.character.map(character => {
                                 $(".character-container" + film.id).append(`
-                                <div class="character${film.id}">${actor.actor} as ${actor.character}</div>
+                                <div class="character${film.id}">${character.character} (${character.actor})</div>
                                 `)
                             })
-                            $(".casting"+film.id).html("Close")
+                            $(".character"+film.id).html("Close")
                             $(this).val("close")
                         }
                         else {
                             $(".character"+film.id).remove()
-                            $(".casting"+film.id).html("View Casting")
+                            $(".character"+film.id).html("View Characters")
                             $(this).val("view")
                         }
                     })
