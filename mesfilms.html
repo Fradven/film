@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script>
         $(document).ready(function () {
-            $.post("./db.json", function (data) {
+            $.get("./db.json", function (data) {
                 data.map(film => {
                     $("#film").append(`
                     <div class="film-container">
@@ -16,22 +16,22 @@
                         <div>${film.type}</div>
                         <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
                         <div class="character-container${film.id}"></div>
-                        <button class="character${film.id}" value="view">View Charcters</button>
+                        <button class="button-character${film.id}" value="view">View Charcters</button>
                     </div>
                     `)
-                    $(".character" + film.id).on("click", function () {
+                    $(".button-character"+film.id).on("click", function () {
                         if ($(this).val() === "view"){
                             film.character.map(character => {
-                                $(".character-container" + film.id).append(`
+                                $(".character-container"+film.id).append(`
                                 <div class="character${film.id}">${character.character} (${character.actor})</div>
                                 `)
                             })
-                            $(".character"+film.id).html("Close")
+                            $(this).html("Close")
                             $(this).val("close")
                         }
                         else {
                             $(".character"+film.id).remove()
-                            $(".character"+film.id).html("View Characters")
+                            $(this).html("View Characters")
                             $(this).val("view")
                         }
                     })

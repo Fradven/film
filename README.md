@@ -134,7 +134,7 @@ Here we are marely selecting the data using the jquery selector **$()** and puti
 
 In the method here, the loop is done for you and there are no **"i"** pass down in any brackets. It was alredy done for you!
 
-    Note: In here the "index" parameter is equivalent to the variable "film" in the exmple for the "for()" statement. You can therefore call this parameter whatever is more appropriate.
+Note: In here the "index" parameter is equivalent to the variable "film" in the exmple for the "for()" statement. You can therefore call this parameter whatever is more appropriate.
 
 ### Using forEach() or .map()
 
@@ -231,7 +231,7 @@ It should like something like this:
                         <div>${film.type}</div>
                         <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
                         <div class="character-container${film.id}"></div>
-                        <button class="character${film.id}" value="view">View Charcters</button>
+                        <button class="button-character${film.id}" value="view">View Charcters</button>
                     </div>
                     `)
 
@@ -255,18 +255,18 @@ For that we have the **.val()** method that will take the value of what comes be
 
 Now in a **if()...else** statement we will check the value of the button and depending on what it is we will change both it's value using **.val()** and it's content using **.html**
 
-    $(".character" + film.id).on("click", function () {
+    $(".button-character" + film.id).on("click", function () {
                         if ($(this).val() === "view"){
-                            $(".character"+film.id).html("Close")
+                            $(this).html("Close")
                             $(this).val("close")
                         }
                         else {
-                            $(".character"+film.id).html("View Characters")
+                            $(this).html("View Characters")
                             $(this).val("view")
                         }
                     })
 
-To summaryse, what is but inside de parentesis of the **.val()** will replace the value of the element and what is inside the **.html()** method will replace what is inside the tags.
+To summaryse, what is put inside de parentesis of the **.val()** will replace the value of the element and what is inside the **.html()** method will replace what is inside the tags.
 
 ### After .append() we .remove()
 
@@ -277,7 +277,7 @@ For that we simple append the character in our first if statement and in the els
 The whole script is now finished and should look something like this:
 
     $(document).ready(function () {
-            $.post("./db.json", function (data) {
+            $.get("./db.json", function (data) {
                 data.map(film => {
                     $("#film").append(`
                     <div class="film-container">
@@ -285,22 +285,22 @@ The whole script is now finished and should look something like this:
                         <div>${film.type}</div>
                         <div class="poster"><img src=${film.poster} alt="${film.title}"></div>
                         <div class="character-container${film.id}"></div>
-                        <button class="character${film.id}" value="view">View Charcters</button>
+                        <button class="button-character${film.id}" value="view">View Charcters</button>
                     </div>
                     `)
-                    $(".character" + film.id).on("click", function () {
+                    $(".button-character"+film.id).on("click", function () {
                         if ($(this).val() === "view"){
                             film.character.map(character => {
-                                $(".character-container" + film.id).append(`
+                                $(".character-container"+film.id).append(`
                                 <div class="character${film.id}">${character.character} (${character.actor})</div>
                                 `)
                             })
-                            $(".character"+film.id).html("Close")
+                            $(this).html("Close")
                             $(this).val("close")
                         }
                         else {
                             $(".character"+film.id).remove()
-                            $(".character"+film.id).html("View Characters")
+                            $(this).html("View Characters")
                             $(this).val("view")
                         }
                     })
