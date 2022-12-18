@@ -101,7 +101,7 @@ The next step is to loop through the data to extract what we want and need for o
 
 There are several method for this:
 
-#### Using for() statement
+### Using for() statement
 
 You have the classic **for()** method that loops as long as the parameters inside it are true
 
@@ -118,7 +118,7 @@ The **for()** statement here will increment **"i"** as long as **"i"** is stricl
 
 By puting the **"i"** instead of a number inside the brackets of **data[]**, we will be able to fetch on by one the objects from the json file.
 
-#### Using jquery .each() method
+### Using jquery .each() method
 
 As we have already imported jquery, we might as well use it's tools in our project.
 
@@ -136,7 +136,7 @@ In the method here, the loop is done for you and there are no **"i"** pass down 
 
     Note: In here the "index" parameter is equivalent to the variable "film" in the exmple for the "for()" statement. You can therefore call this parameter whatever is more appropriate.
 
-#### Using forEach() or .map()
+### Using forEach() or .map()
 
 Javascript also come with an equivalent to the **.each()** method.
 
@@ -157,3 +157,55 @@ These methods are very similar to the jquery one by a native to javascript and d
 In essence, they work the same way.
 
 ## 4. Inject the data into the page
+
+Now that we can extract data from the data base, we have to put in on our webpage. For that we will use **.append()** to inject element into the page.
+
+    data.map(film => {
+                    $("#film").append(`
+                    <div class="film-container">
+                        <h2>${film.titre} (${film.sortie})</h2>
+                        <div>${film.type}</div>
+                        <div class="poster"><img src=${film.poster} alt="${film.titre}"></div>
+                        <div class="character-container${film.id}"></div>
+                        <button class="casting${film.id}" value="view">View Casting</button>
+                    </div>
+                    `)
+                })
+
+As you can see, using **.append()** we can write html tags as strings that will be create on the page. 
+
+Here we are selecting the div we created at the beggining with the id **film** like this **$(#film)** and then we add the **.append()** method that will contain a string. Here we contain the string inside backticks ` `` ` so that we can use [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+
+As we know, the parameter **film** is an object. We can therefore get the element we want from it by writing **film** followed by a **dot** and then the **name of the element**
+
+    exemple: film.titre
+
+Inside those tags,  we are suing the template literal that alows us to call script element inside a string, in this case it will be the elemnt inside the object that we want to show on the page.
+
+Since our json has an other array inside of it for the characters that plays in our film, we must do an other loop to get those element and append them inside that loop. 
+
+So we are doing a loop inside a loop.
+
+    data.map(film => {
+                    $("#film").append(`
+                    <div class="film-container">
+                        <h2>${film.titre} (${film.sortie})</h2>
+                        <div>${film.type}</div>
+                        <div class="poster"><img src=${film.poster} alt="${film.titre}"></div>
+                        <div class="character-container${film.id}"></div>
+                    </div>
+                    `)
+
+                    film.acteur.map(actor => {
+                        $(".character-container" + film.id).append(`
+                        <div class="character${film.id}">${actor.actor} as ${actor.character}</div>
+                        `)
+                    })
+                })
+
+As you may have noticed we **added the object's id to the class of the div**. 
+
+The reason is that, in the first loop, we will create several time the same div and if we want to inject the element from the second loop into it we will inject it in all the div that has the same class name.
+
+To prevent that, we added the the id of the object to the class name so that it can become unique and the second loop will only append it's information inside that one we want.
+
