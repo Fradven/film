@@ -74,7 +74,7 @@ First of, we new the open a new script tag that will be our main playground for 
 
 I'd recomend puting this script tage in the head below the script where we imported jquery.
 
-A good thing to already include in your script is the **.ready()** method that will execute what's inside only after the elemnt that comes before has been fully loaded or executed.
+A good thing to already include in your script is the [.ready()](https://api.jquery.com/ready/) method that will execute what's inside only after the elemnt that comes before has been fully loaded or executed.
 
     <script>
         $(document).ready(function () {
@@ -84,7 +84,7 @@ A good thing to already include in your script is the **.ready()** method that w
 
 ### The fetching:
 
-To start fetching from our json (or any DB you may have created) we will use either jquery's **$.post()** or **.get()**  method as show below.
+To start fetching from our json (or any DB you may have created) we will use either jquery's [$.post()](https://api.jquery.com/jQuery.post/#jQuery-post-url-data-success-dataType) or [.get()](https://api.jquery.com/jQuery.get/#jQuery-get-url-data-success-dataType)  method as show below.
 
     $.get("db.json", function (data) {
         // Here will go our main function
@@ -103,7 +103,7 @@ There are several method for this:
 
 ### Using for() statement
 
-You have the classic **for()** method that loops as long as the parameters inside it are true
+You have the classic [for()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) method that loops as long as the parameters inside it are true
 
     for (i = 0; i < data.length; i++) {
         // the variable film here will be all the data about one film from the db.json file
@@ -122,7 +122,7 @@ By puting the **"i"** instead of a number inside the brackets of **data[]**, we 
 
 As we have already imported jquery, we might as well use it's tools in our project.
 
-Jquery comes with its own simplefied version of a loop, the **.each()** method.
+Jquery comes with its own simplefied version of a loop, the [.each()](https://api.jquery.com/each/#each-function) method.
 
     $(data).each(function(index){
         // code to be execute for each elements of data
