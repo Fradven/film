@@ -59,7 +59,7 @@ In this exercie, we will simply use the **cdn link and put it in the src of the 
 
 In the body we will put a siple div with an id of ***film***.
 
-This is where we will inject all or data once fetched. We should be directly doing anything here from now on (but you can also add a title to your page if you want).
+This is where we will inject all our data once fetched. We shouldn't be directly adding anything here from now on (although you can also add a title to your page if you want).
 
     <body>
         <h1>Here are some Films</h1>
@@ -70,11 +70,11 @@ This is where we will inject all or data once fetched. We should be directly doi
 
 ### Before we start:
 
-First of, we new the open a new script tag that will be our main playground for what we are about to do.
+First of, we new the open a new script tag which will be our main playground for what we are about to do.
 
-I'd recomend puting this script tage in the head below the script where we imported jquery.
+I'd recomend puting this script tag in the head below the script where we imported jquery.
 
-A good thing to already include in your script is the [.ready()](https://api.jquery.com/ready/) method that will execute what's inside only after the elemnt that comes before has been fully loaded or executed.
+A good thing to already include in your script is the [.ready()](https://api.jquery.com/ready/) method that will execute what's inside only after the element that comes before has been fully loaded or executed, in our case the elemnt is the entire page (document).
 
     <script>
         $(document).ready(function () {
@@ -90,16 +90,16 @@ To start fetching from our json (or any DB you may have created) we will use eit
         // Here will go our main function
     })
 
-As show above, the method **$.get()** will have two parameters:
+As shown above, the method **$.get()** will have two parameters:
 
-* the first parameter is **string** containing the **path to our DB**, in this case **"db.json"**
-* the second parameter is a **function** that will also contian a parameter here called **data**. This data parameter is actualy the data that we are now fetching from **db.json**.
+* the first parameter is **string** containing the **path to our DB**, for us it's just the file **"db.json"**
+* the second parameter is a **function** that will also contian a parameter here called **data**. This data parameter is actualy the data that we are fetching from **db.json**.
 
 ### Looping through the data
 
-The next step is to loop through the data to extract what we want and need for our page.
+The next step is to loop through the data to extract what we want for our page.
 
-There are several method for this:
+There are several methods for this:
 
 ### Using for() statement
 
@@ -114,15 +114,15 @@ Our data base here is a json file with an array of object. Thus each of the obje
 
 Therefore to select the first object in our array we write **data[0]**, to get the second **data[1]**, etc.
 
-The **for()** statement here will increment **"i"** as long as **"i"** is stricly smaller than the amout of object in our data and we know how many elements are in our data set thanks to the **.length** property.
+The **for()** statement here will increment **"i"** as long as **"i"** is stricly smaller than the amout of object in our data and we know how many elements are in our data set thanks to the [.length](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length) property.
 
-By puting the **"i"** instead of a number inside the brackets of **data[]**, we will be able to fetch on by one the objects from the json file.
+By puting the **"i"** instead of a number inside the brackets of **data[]**, we will be able to fetch the objects from the json file one by one.
 
 ### Using jquery .each() method
 
 As we have already imported jquery, we might as well use it's tools in our project.
 
-Jquery comes with its own simplefied version of a loop, the [.each()](https://api.jquery.com/each/#each-function) method.
+Jquery comes with its own simplefied version of the **for()** loop, the [.each()](https://api.jquery.com/each/#each-function) method.
 
     $(data).each(function(index){
         // code to be execute for each elements of data
@@ -134,7 +134,7 @@ Here we are marely selecting the data using the jquery selector **$()** and puti
 
 In the method here, the loop is done for you and there are no **"i"** pass down in any brackets. It was alredy done for you!
 
-Note: In here the "index" parameter is equivalent to the variable "film" in the exmple for the "for()" statement. You can therefore call this parameter whatever is more appropriate.
+Note: In here the "index" parameter is equivalent to the variable "film" in the previous exmple for the "for()" statement. You can therefore call this parameter whatever is more appropriate.
 
 ### Using forEach() or .map()
 
@@ -152,11 +152,13 @@ Both the [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
         // code to be execute here for each elements of data
     })
 
-These methods are very similar to the jquery one by a native to javascript and do not require the **$()**.
+These methods are very similar to the jquery one but are native to javascript and do not require the **$()**.
 
-In essence, they work the same way.
+In essence, they work the same way so use what you prefer here.
 
 ## 4. Inject the data into the page
+
+### Append content
 
 Now that we can extract data from the data base, we have to put in on our webpage. For that we will use [.append()](https://api.jquery.com/append/#append-content-content) to inject element into the page.
 
@@ -174,17 +176,19 @@ Now that we can extract data from the data base, we have to put in on our webpag
 
 As you can see, using **.append()** we can write html tags as strings that will be create on the page. 
 
-Here we are selecting the div we created at the beggining with the id **film** like this **$(#film)** and then we add the **.append()** method that will contain a string. Here we contain the string inside backticks ` `` ` so that we can use [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+Here we are selecting the div we created at the beggining of this project that has the id **film**. We select it whith **$(#film)** and then we add the **.append()** method that will contain a string. Here we contain the string inside backticks ` `` ` so that we can use [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 As we know, the parameter **film** is an object. We can therefore get the element we want from it by writing **film** followed by a **dot** and then the **name of the element**
 
     exemple: film.title
 
-Inside those tags,  we are suing the template literal that alows us to call script element inside a string, in this case it will be the elemnt inside the object that we want to show on the page.
+Inside those tags,  we are using the ***template literal*** that alows us to call script element inside a string, in this case it will be the elemnt inside the object that we want to show on the page.
 
-Since our json has an other array inside of it for the characters that plays in our film, we must do an other loop to get those element and append them inside that loop. 
+### Fetch and append content that is inside an other content
 
-So we are doing a loop inside a loop.
+Since our json has an other array inside of it for the characters that plays in our films, we must do an other loop to get those element and append them inside that loop. 
+
+So we have to create a loop inside a loop.
 
     data.map(film => {
                     $("#film").append(`
@@ -203,27 +207,27 @@ So we are doing a loop inside a loop.
                     })
                 })
 
-As you may have noticed we **added the object's id to the class of the div**. 
+As you may have noticed we ***added the object's id to the class of the div*** using once again ***template literal***. 
 
-The reason is that, in the first loop, we will create several time the same div and if we want to inject the element from the second loop into it we will inject it in all the div that has the same class name.
+The reason is that, in the first loop, we will create several time the same div that will have the same class name each time. If we want to inject the element from the second loop into it we will inject it in all the div that has the same class name, all the movies will therefore have all the characters from the other movies inside that div.
 
-To prevent that, we added the the id of the object to the class name so that it can become unique and the second loop will only append it's information inside that one we want.
+To prevent that, we added the the id of the object to the class name so that it can become unique and the second loop will only append it's information inside that one.
 
 ## 5. View and Close button
 
-We now want to be able to show or hide the list of characters for each movies. For that we must create a button that will be execute on click and show or hide the content as well changing the button itself.
+We now want to be able to show or hide the list of characters for each movies. For that we must create a button that will be execute on click and show or hide the content as well as changing the button itself.
 
-For that we will use several jquery method and a if()...else statement:
+For that we will use several jquery method and an if()...else statement:
 
 ### Add button
 
 First of, we need to add the button. We will put it at the end of the first **.append()** of our loop since it's a button that needs to appear for each of our movies.
 
-Inside the button we will create a class that must include the a unique element of the object of the film for the same reason as we mentioned for appending the characters (it is recommended to use the id as it should always be unique) and we will create a value here we will call it view.
+Inside the button we will create a class that must include a unique element of the object of the film for the same reason as we mentioned for appending the characters (it is recommended to use the id as it should always be unique) and we will add a value to the button that we will call ***view***.
 
-Between de tags we will write View Characters.
+Between de tags we will write ***View Characters***.
 
-It should like something like this:
+It should look something like this:
 
     $("#film").append(`
                     <div class="film-container">
@@ -249,11 +253,11 @@ There are several thing we will have to do in this function for our exercise.
 
 ### Changing the button with .val() and .html()
 
-We will first start by changing the value and the text between the tags of our button.
+We will first start by changing the ***value*** and the ***text between the tags*** of our button.
 
 For that we have the [.val()](https://api.jquery.com/val/#val) method that will take the value of what comes before, here the value will be **$(this)** which will select the specific value of the button we clicked and not other.
 
-Now in a **if()...else** statement we will check the value of the button and depending on what it is we will change both it's value using **.val()** and it's content using **.html**
+Now in a **if()...else** statement we will ***check the value of the button*** and depending on what it is we will change both it's value using **.val()** and it's content using **.html**
 
     $(".button-character" + film.id).on("click", function () {
                         if ($(this).val() === "view"){
@@ -266,13 +270,13 @@ Now in a **if()...else** statement we will check the value of the button and dep
                         }
                     })
 
-To summaryse, what is put inside de parentesis of the **.val()** will replace the value of the element and what is inside the [.html()](https://api.jquery.com/html/#html) method will replace what is inside the tags.
+To summaryse, what is put inside de parentesis of the **.val()** will ***replace the value of the element*** and what is inside the [.html()](https://api.jquery.com/html/#html) method will ***replace what is inside the tags***.
 
 ### After .append() we .remove()
 
 The button is now ready to show the character list when we click on it and hide it when we click it again.
 
-For that we simple append the character in our first if statement and in the else statement we select the div and add the method [.remove()](https://api.jquery.com/remove/#remove-selector)
+To do that we simply append the characters in our first if statement and in the else statement we select the chracter's individual div and add the method [.remove()](https://api.jquery.com/remove/#remove-selector).
 
 The whole script is now finished and should look something like this:
 
