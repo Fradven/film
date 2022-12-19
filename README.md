@@ -103,7 +103,7 @@ There are several method for this:
 
 ### Using for() statement
 
-You have the classic [for()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) method that loops as long as the parameters inside it are true
+You have the classic [for()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) statement that loops as long as the parameters inside it are true
 
     for (i = 0; i < data.length; i++) {
         // the variable film here will be all the data about one film from the db.json file
@@ -140,7 +140,7 @@ Note: In here the "index" parameter is equivalent to the variable "film" in the 
 
 Javascript also come with an equivalent to the **.each()** method.
 
-Both the **forEach()** and **.map()** method accomplish the same thing as the jquery method.
+Both the [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) and [.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method accomplish the same thing as the jquery method.
 
     data.forEach(function(film) {
         // code to be execute here for each elements of data
@@ -158,7 +158,7 @@ In essence, they work the same way.
 
 ## 4. Inject the data into the page
 
-Now that we can extract data from the data base, we have to put in on our webpage. For that we will use **.append()** to inject element into the page.
+Now that we can extract data from the data base, we have to put in on our webpage. For that we will use [.append()](https://api.jquery.com/append/#append-content-content) to inject element into the page.
 
     data.map(film => {
                     $("#film").append(`
@@ -237,7 +237,7 @@ It should like something like this:
 
 ### Using .on() method
 
-Now, we must add an event listener that will ***listen*** to the button. For that we will use  the jquery **.on()** method and instruct it to wait for a click to activite.
+Now, we must add an event listener that will ***listen*** to the button. For that we will use  the jquery [.on()](https://api.jquery.com/one/#one-events-data-handler) method and instruct it to wait for a click to activite.
 
     $(".characters" + film.id).on("click", function(){
         // add event here
@@ -251,7 +251,7 @@ There are several thing we will have to do in this function for our exercise.
 
 We will first start by changing the value and the text between the tags of our button.
 
-For that we have the **.val()** method that will take the value of what comes before, here the value will be **$(this)** which will select the specific value of the button we clicked and not other.
+For that we have the [.val()](https://api.jquery.com/val/#val) method that will take the value of what comes before, here the value will be **$(this)** which will select the specific value of the button we clicked and not other.
 
 Now in a **if()...else** statement we will check the value of the button and depending on what it is we will change both it's value using **.val()** and it's content using **.html**
 
@@ -266,13 +266,13 @@ Now in a **if()...else** statement we will check the value of the button and dep
                         }
                     })
 
-To summaryse, what is put inside de parentesis of the **.val()** will replace the value of the element and what is inside the **.html()** method will replace what is inside the tags.
+To summaryse, what is put inside de parentesis of the **.val()** will replace the value of the element and what is inside the [.html()](https://api.jquery.com/html/#html) method will replace what is inside the tags.
 
 ### After .append() we .remove()
 
 The button is now ready to show the character list when we click on it and hide it when we click it again.
 
-For that we simple append the character in our first if statement and in the else statement we select the div and add the method **.remove()**
+For that we simple append the character in our first if statement and in the else statement we select the div and add the method [.remove()](https://api.jquery.com/remove/#remove-selector)
 
 The whole script is now finished and should look something like this:
 
