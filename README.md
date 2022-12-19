@@ -41,7 +41,7 @@ We will fill the json file with an id, the title of a movie, the genre, the year
 
 Before doing anything on the html itself we must first start by importing the **Jquery** library to the page.
 
-In this exercie, we will simply use the **cdn link and put it in the src script tag**.
+In this exercie, we will simply use the **cdn link and put it in the src of the script tag**.
 
     <head>
         <meta charset="UTF-8">
