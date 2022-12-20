@@ -138,7 +138,7 @@ Note: In here the `index` parameter is equivalent to the variable `film` in the 
 
 ### Using forEach() or .map()
 
-Javascript also come with an equivalent to the **.each()** method.
+Javascript also come with an equivalent to the `.each()` method.
 
 Both the [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) and [.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method accomplish the same thing as the jquery method.
 
@@ -152,7 +152,7 @@ Both the [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
         // code to be execute here for each elements of data
     })
 `
-These methods are very similar to the jquery one but are native to javascript and do not require the **$()**.
+These methods are very similar to the jquery one but are native to javascript and do not require the `$()`.
 
 In essence, they work the same way so use what you prefer here.
 
@@ -221,11 +221,11 @@ For that we will use several jquery method and an [if()...else](https://develope
 
 ### Add button
 
-First of, we need to add the button. We will put it at the end of the first **.append()** of our loop since it's a button that needs to appear for each of our movies.
+First of, we need to add the button. We will put it at the end of the first `.append()` of our loop since it's a button that needs to appear for each of our movies.
 
-Inside the button we will create a class that must include a unique element of the object of the film for the same reason as we mentioned for appending the characters (it is recommended to use the id as it should always be unique) and we will add a value to the button that we will call ***view***.
+Inside the button we will create a class that must include a unique element of the object of the film for the same reason as we mentioned for appending the characters (it is recommended to use the id as it should always be unique) and we will add a value to the button that we will call `view`.
 
-Between de tags we will write ***View Characters***.
+Between de tags we will write `View Characters`.
 
 It should look something like this:
 
@@ -253,11 +253,11 @@ There are several thing we will have to do in this function for our exercise.
 
 ### Changing the button with .val() and .html()
 
-We will first start by changing the ***value*** and the ***text between the tags*** of our button.
+We will first start by changing the `value` and the `text between the tags` of our button.
 
-For that we have the [.val()](https://api.jquery.com/val/#val) method that will take the value of what comes before, here the value will be **$(this)** which will select the specific value of the button we clicked and not other.
+For that we have the [.val()](https://api.jquery.com/val/#val) method that will take the value of what comes before, here the value will be `$(this)` which will select the specific value of the button we clicked and not other.
 
-Now in a **if()...else** statement we will ***check the value of the button*** and depending on what it is we will change both it's value using **.val()** and it's content using **.html**
+Now in a `if()...else` statement we will ***check the value of the button*** and depending on what it is we will change both it's value using `.val()` and it's content using `.html()`
 
     $(".button-character" + film.id).on("click", function () {
                         if ($(this).val() === "view"){
@@ -270,7 +270,7 @@ Now in a **if()...else** statement we will ***check the value of the button*** a
                         }
                     })
 
-To summaryse, what is put inside de parentesis of the **.val()** will ***replace the value of the element*** and what is inside the [.html()](https://api.jquery.com/html/#html) method will ***replace what is inside the tags***.
+To summaryse, what is put inside de parentesis of the `.val()` will ***replace the value of the element*** and what is inside the [.html()](https://api.jquery.com/html/#html) method will ***replace what is inside the tags***.
 
 ### After .append() we .remove()
 
