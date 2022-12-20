@@ -151,7 +151,7 @@ Both the [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
     data.map(film => {
         // code to be execute here for each elements of data
     })
-`
+
 These methods are very similar to the jquery one but are native to javascript and do not require the `$()`.
 
 In essence, they work the same way so use what you prefer here.
@@ -276,7 +276,7 @@ To summaryse, what is put inside de parentesis of the `.val()` will ***replace t
 
 The button is now ready to show the character list when we click on it and hide it when we click it again.
 
-To do that we simply append the characters in our first if statement and in the else statement we select the chracter's individual div and add the method [.remove()](https://api.jquery.com/remove/#remove-selector).
+To do that we simply append the characters in our first if statement and in the else statement we select the chracter's individual `<div>` and add the method [.remove()](https://api.jquery.com/remove/#remove-selector).
 
 The whole script is now finished and should look something like this:
 
