@@ -217,7 +217,7 @@ To prevent that, we added the the id of the object to the class name so that it 
 
 We now want to be able to show or hide the list of characters for each movies. For that we must create a button that will be execute on click and show or hide the content as well as changing the button itself.
 
-For that we will use several jquery method and an if()...else statement:
+For that we will use several jquery method and an [if()...else](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement:
 
 ### Add button
 
