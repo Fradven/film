@@ -72,7 +72,7 @@ This is where we will inject all our data once fetched. We shouldn't be directly
 
 First of, we new the open a new script tag which will be our main playground for what we are about to do.
 
-I'd recomend puting this script tag in the head below the script where we imported jquery.
+I'd recomend puting this script tag in the head, below the script where we imported jquery for better visibility in this exercise.
 
 A good thing to already include in your script is the [.ready()](https://api.jquery.com/ready/) method that will execute what's inside only after the element that comes before has been fully loaded or executed, in our case the elemnt is the entire page (document).
 
