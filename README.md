@@ -57,7 +57,7 @@ In this exercie, we will simply use the **cdn link and put it in the src of the 
 
 ### The body:
 
-In the body we will put a siple div with an id of ***film***.
+In the body we will put a simple `<div>` with an id of ***film***.
 
 This is where we will inject all our data once fetched. We shouldn't be directly adding anything here from now on (although you can also add a title to your page if you want).
 
@@ -84,16 +84,16 @@ A good thing to already include in your script is the [.ready()](https://api.jqu
 
 ### The fetching:
 
-To start fetching from our json (or any DB you may have created) we will use either jquery's [$.post()](https://api.jquery.com/jQuery.post/#jQuery-post-url-data-success-dataType) or [.get()](https://api.jquery.com/jQuery.get/#jQuery-get-url-data-success-dataType)  method as show below.
+To start fetching from our json (or any DB you may have created) we will use either jquery's [$.post()](https://api.jquery.com/jQuery.post/#jQuery-post-url-data-success-dataType) or [$.get()](https://api.jquery.com/jQuery.get/#jQuery-get-url-data-success-dataType)  method as show below.
 
     $.get("db.json", function (data) {
         // Here will go our main function
     })
 
-As shown above, the method **$.get()** will have two parameters:
+Here, the method `$.get(` will have two parameters:
 
-* the first parameter is **string** containing the **path to our DB**, for us it's just the file **"db.json"**
-* the second parameter is a **function** that will also contian a parameter here called **data**. This data parameter is actualy the data that we are fetching from **db.json**.
+* the first parameter is a `string` containing the **path to our DB**, for us it's just the file `db.json`.
+* the second parameter is a `function` that will also contian a parameter here called `data`. This data parameter is actualy the data that we are fetching from `db.json`.
 
 ### Looping through the data
 
@@ -112,11 +112,11 @@ You have the classic [for()](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 
 Our data base here is a json file with an array of object. Thus each of the object must have an index that is auto-generated. So the first film in our db will have in index of 0, the second will be 1, etc.
 
-Therefore to select the first object in our array we write **data[0]**, to get the second **data[1]**, etc.
+Therefore to select the first object in our array we write `data[0]`, to get the second `data[1]`, etc.
 
-The **for()** statement here will increment **"i"** as long as **"i"** is stricly smaller than the amout of object in our data and we know how many elements are in our data set thanks to the [.length](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length) property.
+The `for()` statement here will increment `i` as long as `i` is stricly smaller than the amout of object in our data and we know how many elements are in our data set thanks to the [.length](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length) property.
 
-By puting the **"i"** instead of a number inside the brackets of **data[]**, we will be able to fetch the objects from the json file one by one.
+By puting the `i` instead of a number inside the brackets of `data[]`, we will be able to fetch the objects from the json file one by one.
 
 ### Using jquery .each() method
 
@@ -130,11 +130,11 @@ Jquery comes with its own simplefied version of the **for()** loop, the [.each()
 
 The jquery method is a lot cleaner and shorter then the **for()** statement shown above.
 
-Here we are marely selecting the data using the jquery selector **$()** and puting the **.each()** method next to it with a **function** as a parameter and inside the function a parameter that is going to be one element of our data base, here called **index**.
+Here we are marely selecting the data using the jquery selector `$()` and puting the `.each()` method next to it with a `function` as a parameter and inside the function a parameter that is going to be **one element of our data base**, here called `index`.
 
-In the method here, the loop is done for you and there are no **"i"** pass down in any brackets. It was alredy done for you!
+In the method here, the loop is done for you and there are no `i` pass down in any brackets. It was alredy done for you!
 
-Note: In here the "index" parameter is equivalent to the variable "film" in the previous exmple for the "for()" statement. You can therefore call this parameter whatever is more appropriate.
+Note: In here the `index` parameter is equivalent to the variable `film` in the previous exmple for the `for()` statement. You can therefore call this parameter whatever is more appropriate.
 
 ### Using forEach() or .map()
 
@@ -151,7 +151,7 @@ Both the [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
     data.map(film => {
         // code to be execute here for each elements of data
     })
-
+`
 These methods are very similar to the jquery one but are native to javascript and do not require the **$()**.
 
 In essence, they work the same way so use what you prefer here.
@@ -174,15 +174,15 @@ Now that we can extract data from the data base, we have to put in on our webpag
                     `)
                 })
 
-As you can see, using **.append()** we can write html tags as strings that will be create on the page. 
+As you can see, using `.append()` we can write html tags as strings that will be create on the page. 
 
-Here we are selecting the div we created at the beggining of this project that has the id **film**. We select it whith **$(#film)** and then we add the **.append()** method that will contain a string. Here we contain the string inside backticks ` `` ` so that we can use [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+Here we are selecting the div we created at the beggining of this project that has the id `film`. We select it whith `$(#film)` and then we add the `.append()` method that will contain a string. Here we contain the string inside backticks ` `` ` so that we can use [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-As we know, the parameter **film** is an object. We can therefore get the element we want from it by writing **film** followed by a **dot** and then the **name of the element**
+As we know, the parameter `film` is an object. We can therefore get the element we want from it by writing `film` followed by a `.` and then the `name of the element`.
 
     exemple: film.title
 
-Inside those tags,  we are using the ***template literal*** that alows us to call script element inside a string, in this case it will be the elemnt inside the object that we want to show on the page.
+Inside those tags,  we are using the `template literal` that alows us to call script element inside a string, in this case it will be the elemnt inside the object that we want to show on the page.
 
 ### Fetch and append content that is inside an other content
 
@@ -207,7 +207,7 @@ So we have to create a loop inside a loop.
                     })
                 })
 
-As you may have noticed we ***added the object's id to the class of the div*** using once again ***template literal***. 
+As you may have noticed we ***added the object's id to the class of the div*** using once again `template literal`. 
 
 The reason is that, in the first loop, we will create several time the same div that will have the same class name each time. If we want to inject the element from the second loop into it we will inject it in all the div that has the same class name, all the movies will therefore have all the characters from the other movies inside that div.
 
